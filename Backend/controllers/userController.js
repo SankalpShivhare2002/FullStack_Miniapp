@@ -1,57 +1,66 @@
-const userModel = require('../models/userModel');
-const jwt = require('jsonwebtoken');
-const validate = require('validator')
+const userModel = require("../models/userModel");
+const jwt = require("jsonwebtoken");
+const validate = require("validator");
 
-//login controller
-const login = async function(req, res) {
-  const { email, password } = req.body;
-  
-  //check for correct email format
-  if(!validate.isEmail(email)){
-    return res.status(401).json({
-        status:false,
-        message:'Please enter a valid email address'});
-  }
+const login = async function (req, res) {
+  try {
+    const { email, password } = req.body;
 
-  //check for the user email
-  const user = await userModel.findByEmail(email);
-  console.log(user);
-  
-  if(!user){
-    res.status(401).json({
-        status:false,
-        message:'Then user does not exist'
+    //  Email format validation
+    if (!validate.isEmail(email)) {
+      return res.status(400).json({
+        status: false,
+        message: "Please enter a valid email address",
+      });
+    }
+
+    // Check if user exists or not
+    const user = await userModel.findByEmail(email);
+
+    if (!user) {
+      return res.status(404).json({
+        status: false,
+        message: "The user does not exist",
+      });
+    }
+
+    // password validating if exists or not
+    if (user.password !== password) {
+      return res.status(401).json({
+        status: false,
+        message: "Incorrect password",
+      });
+    }
+
+    // JWT Token generated
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+      expiresIn: "2d",
     });
-}
- //check if user password exists
-  if(user.password !== password){
-    res.json({
-        status:false,
-        message:"Enter a valid password"
+
+    //save the token  in cookie
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+
+    return res.json({
+      status: true,
+      message: "Login successful",
+    });
+  } catch (error) {
+    console.error("Login Error:", error);
+    res.status(500).json({
+      status: false,
+      message: "Internal server error",
     });
   }
+};
 
-  // Generate jwt token
-  const token = jwt.sign({id: user?.id}, process.env.JWT_SECRET, {
-   expiresIn: '2d', //token expires in 2days
-  });
-  console.log(token);
-  
-  //set the token into a cookie
-  res.cookie("token", token, {
-    httpOnly: true,
-    secure : true,
-    sameSite:'strict',
-    maxAge: 24*60*60*1000 //max age of cookie is 1 day
-  });
-  
-  //send response on successful login
-  res.json({ status: true, message: "Login successful" });
-}
+const logout = async function (req, res) {
+  res.cookie("token", "", { maxAge: 1 });
+  return res.status(200).json({ message: "Logged Out Successfully" });
+};
 
-//logout controller
-const logout = async function(req, res){
-    res.cookie("token", "",{maxAge:1});
-    res.status(200).json({message:"Logged Out Successfully"});
-}
-module.exports = {login,logout};  //export modules
+module.exports = { login, logout };

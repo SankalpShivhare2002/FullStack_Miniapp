@@ -5,14 +5,15 @@ const translation = async (req, res) => {
   try {
     const rows = await terms_text.translate_terms(); //fetch data from the model and store in rows variable
     const en = {}; //empty object to store english texts
-    const sen = {}; //empty object to store swedish texts
+    const se = {}; //empty object to store swedish texts
 
     rows.forEach((row) => {  //forEach loop to traverse in the rows array to retrieve data
       en[row.key] = row.en_text;
-      sen[row.key] = row.se_text;
+      se[row.key] = row.se_text;
     });
-
-    res.json({ en, sen });
+    
+    res.json({ en, se });
+    console.log(res);
   } catch (err) {
     res.status(500).json({ message: "Error fetching texts" });
   }

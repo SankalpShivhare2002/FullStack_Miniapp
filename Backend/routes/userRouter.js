@@ -9,7 +9,7 @@ const userRouter = express.Router();
 
 userRouter.post("/login", login); //route the login module
 userRouter.post("/logout", logout); //route the logout module
-userRouter.get("/priceList", isAuthenticated, getPriceList); //route the price list module and protect it with jwt token
+userRouter.get("/priceList", getPriceList); //route the price list module and protect it with jwt token
 userRouter.get("/text", getData); //route the getData module for translation of texts (ENG - SWE)
 userRouter.get("/terms", translation); //route the translation module for translation of texts (ENG - SWE)
 

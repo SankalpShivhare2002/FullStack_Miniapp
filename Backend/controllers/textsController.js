@@ -5,14 +5,14 @@ const getData = async (req, res) => {
   try {
     const rows = await text.getAllData(); //fetch data from the model and store in rows variable
     const en = {}; //store english texts
-    const sen = {}; //store swedish texts
+    const se = {}; //store swedish texts
 
     rows.forEach((row) => {
       en[row.key] = row.en_text;
-      sen[row.key] = row.se_text;
+      se[row.key] = row.se_text;
     });
 
-    res.json({ en, sen });
+    res.json({ en, se });
   } catch (err) {
     res.status(500).json({ message: "Error fetching texts" });
   }

@@ -1,0 +1,273 @@
+.pricelist-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  gap: 5px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0078ff;
+  color: white;
+  padding: 30px 50px;
+  font-size: 14px;
+  margin-top: 0px;
+}
+.content-wrapper {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+.right-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dummy-hamburger,.dummy-toggle{
+    display: none;
+}
+.flag-Norway{
+    margin-left: 3px ;
+    margin-top: 5px;
+    gap: 10px;
+}
+.flag-icon-Norway{
+    object-fit: cover;
+    object-position: center center;
+    width: 30px;
+    height: auto;
+    max-width: 100%;
+    border-radius: 3px;
+}
+.left-menu {
+  width: 200px;
+  background-color: #1e1e2f;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.left-menu h2 {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #2b2b3f;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.menu-item:hover {
+  background-color: #3a3a55;
+}
+
+.menu-icon {
+  width: 20px; 
+  height: 20px;
+  object-fit: contain;
+}
+.misc-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+}
+
+.dummy-search {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  flex: 1;
+  min-width: 220px;
+}
+
+.misc-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.misc-btn {
+  background: #f2f2f2;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.pricelist-table {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-header {
+  font-weight: bold;
+  background: #fafafa;
+}
+.table-header,
+.table-row {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(120px, 1fr));
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-header span {
+  flex: 1;
+  min-width: 100px;
+  text-align: left;
+}
+
+.table-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.table-row {
+  display: flex;
+  gap: 10px;
+}
+
+.table-row input {
+  flex: 1;
+  min-width: 100px;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+@media (max-width: 900px) {
+  .table-header,
+  .table-row {
+    grid-template-columns: repeat(7, minmax(100px, 1fr));
+  }
+}
+
+@media (max-width: 675px) {
+  .misc-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .misc-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .dummy-search {
+    width: 100%;
+  }
+
+  .table-header,
+  .table-row {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+  }
+
+  .table-header div:nth-child(n + 4),
+  .table-row input:nth-child(n + 4) {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .left-menu {
+    display: none !important;
+  }
+  .user-info {
+    display: none;
+  }
+  .dummy-hamburger {
+    display: block !important;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+  }
+  .flag-Norway {
+    display: none;
+  }
+  .dummy-toggle {
+    display: block !important;
+    width: 40px;
+    height: 22px;
+    border-radius: 20px;
+  }
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .misc-bar {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .dummy-search {
+    min-width: 180px;
+  }
+
+  .misc-btn {
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .misc-bar {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .dummy-search {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .misc-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .pricelist-table {
+    margin: 10px 0;
+  }
+
+  .table-header span,
+  .table-row input {
+    min-width: 80px;
+    font-size: 12px;
+  }
+
+  .table-body {
+    max-height: 60vh;
+  }
+}

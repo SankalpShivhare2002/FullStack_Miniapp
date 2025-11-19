@@ -1,0 +1,85 @@
+/*works only on mobile view portrait*/
+
+.terms-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  color: white;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  overflow-x: hidden;
+}
+
+.terms-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 2%;
+  margin-bottom: 10px;
+}
+
+.close-btn {
+  font-size: 1.125em;
+  margin-top: 1.5em;
+
+  border-radius: 3rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  background-color: rgb(8, 158, 30);
+  color: white;
+
+  padding: 1rem 2.5rem;
+  width: 70%;
+  max-width: 270px;
+}
+
+.terms-div {
+  background: #fff;
+  width: 100%;
+  max-width: 750px;
+
+  border-radius: 20px;
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+  line-height: 1.6em;
+
+  text-align: left;        
+  word-wrap: break-word;   
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 480px) {
+  .terms-page {
+    padding: 15px;
+    margin-top: 10px;
+  }
+
+  .terms-div {
+    padding: 20px;
+  }
+
+  .close-btn {
+    width: 80%;
+  }
+}
+
+/*hide the page if resolution is more than mobile portrait*/
+
+@media (min-width: 481px) {
+  .terms-page {
+    display: none !important;
+  }
+}

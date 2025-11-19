@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors"); //for cross-origin-requests
 const cookieParser = require('cookie-parser');
 const userRouter = require("./routes/userRouter");
 require("../Backend/utils/db");
@@ -9,6 +10,10 @@ require('dotenv').config();
 const PORT = process.env.PORT || 3001
 
 //middlewares
+app.use(cors({
+  origin: "http://localhost:5173", //linking frontend url
+  credentials: true
+}));
 app.use(express.json()); //pass incoming json data
 app.use("/api/users", userRouter); //routes
 app.use(express.urlencoded({ extended: true })); //middleware to read data from html forms

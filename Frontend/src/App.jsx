@@ -1,26 +1,38 @@
-import { useEffect, useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
-import Navbar from './components/Navbar';
-import Login from './pages/Login';
+import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Login from "./pages/Login.jsx";
+import Terms from "./pages/Terms.jsx";
+import PriceList from "./pages/PriceList.jsx";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [error, setError] = useState("");
-  
-useEffect(()=>{
-  
-})
   return (
-    <Router>
-      <Navbar />
-
+    <>
       <Routes>
-        <Route path='/login' element={<Login/>}/>
-
+        <Route
+          path="/login/"
+          element={
+            <>
+              <Navbar />
+              <Login />
+            </>
+          }
+        />
+        <Route
+          path="/terms/"
+          element={
+            <>
+              <Navbar />
+              <Terms />
+            </>
+          }
+        />
       </Routes>
-      
-    </Router>
-  )
+      <Routes>
+        <Route path="/pricelist/" element={<PriceList />} />
+      </Routes>
+    </>
+  );
 }
 
-export default App
+export default App;

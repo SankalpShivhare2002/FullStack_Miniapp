@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3001
 
 //middlewares
 app.use(cors({
-  origin: "https://fullstack-miniapp-ui.onrender.com", //linking frontend url
+  origin: "https://full-stack-miniapp.vercel.app", //linking frontend url
   credentials: true
 }));
 app.use(express.json()); //pass incoming json data

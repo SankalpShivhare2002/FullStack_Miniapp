@@ -5,7 +5,7 @@ import bg from "../assets/sverige43.jpg";
 import { useState, useContext } from "react";
 import { LanguageContext } from "../components/LangContext.jsx";
 import { loginUser } from "../utils/apis.js";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -23,17 +23,14 @@ const Login = () => {
     console.log("Login API Response:", res);
 
     // If backend sends error
-    if (res?.status === false) {
-  if (res.field === "email") {
-    setEmailError(res.message);
-    setPasswordError("");
-  } else if (res.field === "password") {
+    if (res.success === false) {
+  if (res.message === "Incorrect password") {
     setPasswordError(res.message);
     setEmailError("");
   } else {
     setEmailError(res.message);
-    setPasswordError("");
-  }
+    setPassword("");
+  } 
 
   return;
 }

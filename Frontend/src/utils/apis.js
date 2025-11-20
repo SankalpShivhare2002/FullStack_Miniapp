@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3000", // backend link
+  baseURL: "https://fullstack-miniapp.onrender.com", // backend link
   withCredentials: true, // if using cookies/JWT later
 });
 

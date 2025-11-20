@@ -13,7 +13,7 @@ const Login = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { language, translatedText } = useContext(LanguageContext);
 
   const handleLogin = async (e) => {
@@ -41,6 +41,7 @@ const Login = () => {
     setEmailError("");
     setPasswordError("");
     alert(res.message);
+    navigate("/pricelist");
   };
   
   return (
@@ -77,9 +78,9 @@ const Login = () => {
                   />
                 </div>
 
-                {/* {emailError && ( */}
+                {emailError && (
                   <span className="email-error error-span">{emailError}</span>
-                {/* )} */}
+                )}
 
                 {/* PASSWORD */}
                 <div className="login-password">

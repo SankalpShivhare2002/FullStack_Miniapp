@@ -1,4 +1,4 @@
-const {Client} = require("pg")
+const {Client} = require("@neondatabase/serverless")
 require('dotenv').config();
 
 const db_connect = new Client({ connectionString: process.env.DATABASE_URL });
